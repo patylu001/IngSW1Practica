@@ -3,8 +3,13 @@ import java.util.HashMap; // import the HashMap class
 
 public class AlumnoDAOHashMap implements AlumnoDAO{
 
-	HashMap<String,Alumno> dbAlumnos = new HashMap<String, Alumno>();
+	private HashMap<String,Alumno> dbAlumnos = new HashMap<String, Alumno>();
 	
+	AlumnoDAOHashMap()
+	{
+		dbAlumnos = new HashMap<String, Alumno>();
+	}
+
 	public void addAlumno(Alumno alumno) {
 		// TODO Auto-generated method stub
 		dbAlumnos.put(alumno.getId(), alumno);
@@ -24,7 +29,10 @@ public class AlumnoDAOHashMap implements AlumnoDAO{
 
 	public String getAlumnoName(String id) {
 		// TODO Auto-generated method stub
-		return dbAlumnos.get(id).getName() +  dbAlumnos.get(id).getLastName();
+		String result = "";
+		if (dbAlumnos.get(id) != null)
+			result = dbAlumnos.get(id).getName() + " " + dbAlumnos.get(id).getLastName();
+		return result;
 	}
 
 	public HashMap<String, Alumno> getAllAlumno() {
@@ -32,5 +40,13 @@ public class AlumnoDAOHashMap implements AlumnoDAO{
 		return dbAlumnos;
 	}
 
+	public Alumno getAlumno(String id)
+	{
+		return dbAlumnos.get(id);
+	}
+
+	
+
+	
 	
 }
